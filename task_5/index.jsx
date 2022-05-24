@@ -10,7 +10,7 @@ reduxState = {
 }
 
 const MainComponent = () => {
-    const userData = useSelector(reduxState => reduxState.userData); // subscribe and get only userData object
+    const userData = useSelector(reduxState => reduxState.userData, (prev, next) => prev.name === next.name && prev.surname === next.surname); // subscribe and get only userData object
 
     // ... other code
 };
