@@ -49,5 +49,33 @@ const tileArr: Array<ITile> = [
     },
 ];
 
+const
+
 // write You code here
 // const result: IResult = ...
+
+const initCalculateObj = {
+  totalPriceSum: 0,
+  tileCount: 0,
+  averagePriceSum: 0
+};
+
+const calculateObj = (array: Array<ITile>) : IResult  => {
+  return array.reduce(
+    (obj: IResult, { price, isActive }: { price: number, isActive: boolean }) : IResult => {
+      if (isActive) {
+        const totalPriceSum = obj.totalPriceSum + price;
+        const tileCount = obj.tileCount + 1;
+        const averagePriceSum = totalPriceSum / tileCount;
+
+        return {
+          totalPriceSum,
+          tileCount,
+          averagePriceSum
+        };
+      }
+      return obj;
+    },
+    { ...initCalculateObj }
+  );
+};
